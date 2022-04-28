@@ -1,7 +1,7 @@
 /************************************************************/
 /* Author : Nadine Ashraf Adeeb                             */
 /* Description: File that holds all configuration for       */
-/*                Standard Types                            */
+/*                  STD TYPES                               */
 /*                Layer : LIB                               */
 /* Version :v1.0                                            */
 /* Date : 3 Sep ,2021                                       */
