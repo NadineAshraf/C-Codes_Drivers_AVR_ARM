@@ -1,7 +1,7 @@
 /************************************************************/
 /* Author : Nadine Ashraf Adeeb                             */
 /* Description: File that holds all configuration for       */
-/*                  Bit Math                                */
+/*                  BIT MATH                                */
 /*                Layer : LIB                               */
 /* Version :v1.0                                            */
 /* Date : 3 Sep ,2021                                       */
