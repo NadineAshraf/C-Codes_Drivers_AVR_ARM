@@ -8,11 +8,11 @@
 /************************************************************/
 #include "STD_TYPES.h" 
 #include "BIT_MATH.h" 
-#include "DIO_interface.h"
+#include "DIO_Interface.h"
 
-#include "DCMOTOR_interface.h"
-#include "DCMOTOR_private.h"
-#include "DCMOTOR_config.h"                                                                                                          
+#include "DCMOTOR_Interface.h"
+#include "DCMOTOR_Private.h"
+#include "DCMOTOR_Config.h"                                                                                                          
 
 void DCMOTOR_voidInit(void)
 {
