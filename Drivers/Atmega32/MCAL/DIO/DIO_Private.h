@@ -9,13 +9,5 @@
 /*************************************************************/ 	      
 #ifndef DIO_PRIVATE_H_
 #define DIO_PRIVATE_H_
-#define 
-#define 
-#define 
-#define 
-#define 
-#define 
-#define 
-#define 
-#define 
+
 #endif
