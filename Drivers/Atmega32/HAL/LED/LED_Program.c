@@ -23,7 +23,7 @@ void LED_u8StateON(u8 Copy_u8LEDConnection)
 	#if LED_CONNECTION_TYPE == SOURCE
 	DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_HIGH);
 	#elif LED_CONNECTION_TYPE == SINK
-    DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_LOW);
+        DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_LOW);
 	#else
 		#error "Wrong Connection"
 	#endif
@@ -35,7 +35,7 @@ void LED_u8StateOFF(u8 Copy_u8LEDConnection)
 	#if LED_CONNECTION_TYPE == SOURCE
 	DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_LOW);
 	#elif LED_CONNECTION_TYPE == SINK
-    DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_HIGH);
+        DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_HIGH);
 	#else
 		#error "Wrong Connection"
 	#endif
