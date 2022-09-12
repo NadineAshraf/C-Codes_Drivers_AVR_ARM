@@ -2,7 +2,7 @@ Hello, This repository will include C codes & Drivers of AVR & ARM Microcontroll
 # AVR (Atmega32 Drivers)
  ### - LIB (Library)
 - Bit_Math.
-- STB_Types.
+- STD_Types.
  ### - MCAL (Microcontroller Abstraction Layer)
 -  DIO.
  ### - HAL (Hardware Abstraction Layer)
