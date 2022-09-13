@@ -18,7 +18,7 @@
 #include "LED_Private.h" 
 #include "LED_Config.h"
 
-void LED_u8StateON(u8 Copy_u8LEDConnection)
+void LED_u8StateON(void)
 {
 	#if LED_CONNECTION_TYPE == SOURCE
 	DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_HIGH);
@@ -30,7 +30,7 @@ void LED_u8StateON(u8 Copy_u8LEDConnection)
 
 }
 
-void LED_u8StateOFF(u8 Copy_u8LEDConnection)
+void LED_u8StateOFF(void)
 {
 	#if LED_CONNECTION_TYPE == SOURCE
 	DIO_u8SetPinValue(LED_u8PORT, LED_u8PIN, LED_LOW);
