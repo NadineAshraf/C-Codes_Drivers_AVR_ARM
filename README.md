@@ -6,6 +6,7 @@ Hello, This repository will include C codes & Drivers of AVR & ARM Microcontroll
  ### - MCAL (Microcontroller Abstraction Layer)
 -  DIO.
 -  EXTI.
+-  GIE.
  ### - HAL (Hardware Abstraction Layer)
 - DC Motor.
 - IR Sensor.
