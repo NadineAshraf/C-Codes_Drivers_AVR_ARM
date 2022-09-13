@@ -10,6 +10,6 @@
 #ifndef EXTI_PRIVATE_H_
 #define EXTI_PRIVATE_H_
 
-#define NULL_POINTER 2
+#define NULL_POINTER 3
 
 #endif
