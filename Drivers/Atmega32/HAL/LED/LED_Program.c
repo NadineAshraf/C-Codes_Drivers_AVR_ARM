@@ -14,7 +14,6 @@
 #include "DIO_Interface.h"
 
 #include "LED_Interface.h"
-#include "LED_Register.h"
 #include "LED_Private.h" 
 #include "LED_Config.h"
                  /* Pre-Build Configuration*/
