@@ -13,7 +13,4 @@
 #define LED_HIGH  1
 #define LED_LOW   0
 
-#define SOURCE    1
-#define SINK      0
-
 #endif
