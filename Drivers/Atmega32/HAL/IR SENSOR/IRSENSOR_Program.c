@@ -11,7 +11,7 @@
 
 u8 IRSENSOR_u8GetState(u8 Copy_u8IRState)
 {
-	u8 Local_u8ErrorState = 0;
+	u8 Local_u8ErrorState = OK;
 
 	DIO_u8GetPinValue(IR_LED_u8PORT,IR_u8PIN, &Copy_u8IRState);
 
@@ -25,8 +25,8 @@ u8 IRSENSOR_u8GetState(u8 Copy_u8IRState)
 		}
 		else
 		{
-			return Local_u8ErrorState;
+			Local_u8ErrorState = NOK;
 		}
-
+        return Local_u8ErrorState;
 
 }
