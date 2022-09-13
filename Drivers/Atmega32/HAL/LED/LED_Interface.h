@@ -10,8 +10,7 @@
 #ifndef LED_INTERFACE_H_
 #define LED_INTERFACE_H_
 		
-#define SOURCE    1
-#define SINK      0
-void LED_u8StateON(u8 Copy_u8LEDConnection);
-void LED_u8StateOFF(u8 Copy_u8LEDConnection);
+void LED_u8StateON(void);
+void LED_u8StateOFF(void);
+
 #endif	
