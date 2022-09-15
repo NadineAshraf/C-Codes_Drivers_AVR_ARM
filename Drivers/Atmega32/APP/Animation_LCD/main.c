@@ -1,3 +1,9 @@
+/*
+ * main.c
+ *
+ *  Created on: Oct 2, 2021
+ *      Author: Nadine Ashraf Adeeb
+ */
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
