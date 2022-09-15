@@ -187,6 +187,7 @@ void EXTI_voidINT0State(u8 Copy_u8Int0State)
 	}
 
 }
+
 void EXTI_voidINT1State(u8 Copy_u8Int1State)
 {
 	u8 Local_u8ErrorState = OK;
@@ -220,6 +221,34 @@ void EXTI_voidINT2State(u8 Copy_u8Int2State)
            
 	}
 
+}
+u8 EXTI_u8DisableInterrupt(u8 Copy_InterruptNumber)
+{
+	u8 Local_u8ErrorState = OK;
+	if(Copy_InterruptNumber > INT2 && Copy_InterruptNumber <INT1)
+	{
+       /* Clear the required bit*/
+	CLR_BIT(GICR,Copy_InterruptNumber);
+	}
+	else
+	{
+		Local_u8ErrorState = NOK;
+	}
+	return Local_u8ErrorState;
+}
+u8 EXTI_u8EnableInterrupt(u8 Copy_InterruptNumber)
+{
+	u8 Local_u8ErrorState = OK;
+	if(Copy_InterruptNumber > INT2 && Copy_InterruptNumber <INT1)
+	{
+       /* Clear the required bit*/
+	SET_BIT(GICR,Copy_InterruptNumber);
+	}
+	else
+	{
+		Local_u8ErrorState = NOK;
+	}
+	return Local_u8ErrorState;
 }
 void EXTI_voidINT0SetCallBack(void (*Copy_pv0NotificationFunction)(void))
 {
@@ -303,3 +332,4 @@ void __vector_3 (void)
 	}
 
 }
+
