@@ -21,7 +21,9 @@ typedef float f32;
 typedef double f64;
 
 #define NULL     (void*)0
-#define OK        1
-#define NOK       2
+
+#define OK           1
+#define NOK          2
+#define NULL_POINTER 3
 
 #endif
