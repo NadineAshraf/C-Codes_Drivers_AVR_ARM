@@ -7,7 +7,11 @@
 /**************    Date: 7 September,2022        *************/
 /*************************************************************/
 /*************************************************************/
-
+/******                Added Functions                  ******/ 
+/******  void CLCD_voidWriteNumber(s32 Copy_s32Number)  ******/
+/******            Date: 16 September,2022              ******/
+/*************************************************************/
+/*************************************************************/
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
@@ -103,4 +107,37 @@ void CLCD_voidWriteSpecialCharacter(u8* Copy_pu8Pattern, u8 Copy_u8PatternNumber
 	CLCD_voidGoToXY(Copy_u8XPos, Copy_u8YPos);
 	/*Display the pattern written in the CGRAM*/
 	CLCD_voidSendData(Copy_u8PatternNumber);
+}
+void CLCD_voidWriteNumber(s32 Copy_s32Number)
+{
+	s32 Copy_s32CopyNumber = Copy_s32Number;
+	u8 Local_u8Counter = 0;
+	if(Copy_s32Number == 0)
+	{
+		CLCD_voidSendData('0');
+	}
+	if(Copy_s32Number < 0)
+	{
+		CLCD_voidSendData('-');
+		Copy_s32CopyNumber*= -1;
+		Copy_s32Number*= -1;
+	}
+	/* Counting number of digits for the integer*/
+	while(Copy_s32CopyNumber != 0)
+	{
+		Copy_s32CopyNumber = Copy_s32CopyNumber / 10;
+		Local_u8Counter++;
+	}
+	/* Separating number digits then organizing them into a char array */
+	u8 Local_u8NumberDigits[Local_u8Counter];
+	for(s32 Local_s32Digit = Local_u8Counter -1; Local_s32Digit >= 0; Local_s32Digit--)
+	{
+		Local_u8NumberDigits[Local_s32Digit] = (Copy_s32Number % 10) + '0';
+		Copy_s32Number = Copy_s32Number / 10;
+	}
+	/* Writing the number on the LCD Display */
+	for(s32 Local_s32Digit = 0; Local_s32Digit < Local_u8Counter; Local_s32Digit++)
+		{
+		    CLCD_voidSendData(Local_u8NumberDigits[Local_s32Digit]);
+		}
 }
