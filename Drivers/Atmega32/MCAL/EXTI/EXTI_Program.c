@@ -7,6 +7,14 @@
 /**************    Date: 11 September,2022       *************/
 /*************************************************************/
 /*************************************************************/
+/******                Updated Functions                ******/ 
+/******          void EXTI_voidINTSetCallBack           ******/
+/****** (void (*Copy_pvNotificationFunction)(void)      ******/
+/******                  , u8 Copy_u8INTNumber)         ******/
+/******	 Illustration: I used CallBack Function Array   ******/
+/******            Date: 16 September,2022              ******/
+/*************************************************************/
+/*************************************************************/
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
@@ -16,11 +24,7 @@
 #include "EXTI_Config.h"
 
 /* Global pointer to function to hold INT0 ISR Address*/
-void (*EXTIGlobal_pvInt0NotificationFunction)(void) = NULL;
-/* Global pointer to function to hold INT1 ISR Address*/
-void (*EXTIGlobal_pvInt1NotificationFunction)(void) = NULL;
-/* Global pointer to function to hold INT2 ISR Address*/
-void (*EXTIGlobal_pvInt2NotificationFunction)(void) = NULL;
+void (*EXTIGlobal_pvCallBackFunction [3])(void) = { NULL };
 
      /* Pre-Build / Pre-Compiled */
 void EXTI_voidINT0Init(void)
@@ -187,7 +191,6 @@ void EXTI_voidINT0State(u8 Copy_u8Int0State)
 	}
 
 }
-
 void EXTI_voidINT1State(u8 Copy_u8Int1State)
 {
 	u8 Local_u8ErrorState = OK;
@@ -222,40 +225,12 @@ void EXTI_voidINT2State(u8 Copy_u8Int2State)
 	}
 
 }
-u8 EXTI_u8DisableInterrupt(u8 Copy_InterruptNumber)
+void EXTI_voidINTSetCallBack(void (*Copy_pvNotificationFunction)(void), u8 Copy_u8INTNumber)
 {
 	u8 Local_u8ErrorState = OK;
-	if(Copy_InterruptNumber > INT2 && Copy_InterruptNumber <INT1)
-	{
-       /* Clear the required bit*/
-	CLR_BIT(GICR,Copy_InterruptNumber);
-	}
-	else
-	{
-		Local_u8ErrorState = NOK;
-	}
-	return Local_u8ErrorState;
-}
-u8 EXTI_u8EnableInterrupt(u8 Copy_InterruptNumber)
-{
-	u8 Local_u8ErrorState = OK;
-	if(Copy_InterruptNumber > INT2 && Copy_InterruptNumber <INT1)
-	{
-       /* Clear the required bit*/
-	SET_BIT(GICR,Copy_InterruptNumber);
-	}
-	else
-	{
-		Local_u8ErrorState = NOK;
-	}
-	return Local_u8ErrorState;
-}
-void EXTI_voidINT0SetCallBack(void (*Copy_pv0NotificationFunction)(void))
-{
-	u8 Local_u8ErrorState = OK;
-     if(Copy_pv0NotificationFunction != NULL)
+     if(Copy_pvNotificationFunction != NULL)
     {
-        EXTIGlobal_pvInt0NotificationFunction = Copy_pv0NotificationFunction;
+    	 EXTIGlobal_pvCallBackFunction [Copy_u8INTNumber] = Copy_pvNotificationFunction;
     }
     else
     {
@@ -267,27 +242,14 @@ void EXTI_voidINT0SetCallBack(void (*Copy_pv0NotificationFunction)(void))
 void __vector_1 (void) __attribute__((signal));
 void __vector_1 (void)
 {
-	if(EXTIGlobal_pvInt0NotificationFunction != NULL)
+	if(EXTIGlobal_pvCallBackFunction [0] != NULL)
 	{
-       EXTIGlobal_pvInt0NotificationFunction();
+		EXTIGlobal_pvCallBackFunction [0]();
 	}
 	else
 	{
 		/* Do Nothing*/
 	}
-
-}
-void EXTI_voidINT1SetCallBack(void (*Copy_pv1NotificationFunction)(void))
-{
-	u8 Local_u8ErrorState = OK;
-     if(Copy_pv1NotificationFunction != NULL)
-    {
-        EXTIGlobal_pvInt0NotificationFunction = Copy_pv1NotificationFunction;
-    }
-    else
-    {
-        Local_u8ErrorState = NULL_POINTER;
-    }
 
 }
 
@@ -295,36 +257,24 @@ void EXTI_voidINT1SetCallBack(void (*Copy_pv1NotificationFunction)(void))
 void __vector_2 (void) __attribute__((signal));
 void __vector_2 (void)
 {
-	if(EXTIGlobal_pvInt1NotificationFunction != NULL)
+	if(EXTIGlobal_pvCallBackFunction [1] != NULL)
 	{
-       EXTIGlobal_pvInt1NotificationFunction();
+		EXTIGlobal_pvCallBackFunction [1]();
 	}
 	else
 	{
 		/* Do Nothing*/
 	}
 
-}
-void EXTI_voidINT2SetCallBack(void (*Copy_pv2NotificationFunction)(void))
-{
-	u8 Local_u8ErrorState = OK;
-     if(Copy_pv2NotificationFunction != NULL)
-    {
-        EXTIGlobal_pvInt2NotificationFunction = Copy_pv2NotificationFunction;
-    }
-    else
-    {
-        Local_u8ErrorState = NULL_POINTER;
-    }
 }
 
 /*ISR For INT2*/
 void __vector_3 (void) __attribute__((signal));
 void __vector_3 (void)
 {
-	if(EXTIGlobal_pvInt2NotificationFunction != NULL)
+	if(EXTIGlobal_pvCallBackFunction [2] != NULL)
 	{
-       EXTIGlobal_pvInt2NotificationFunction();
+		EXTIGlobal_pvCallBackFunction [2]();
 	}
 	else
 	{
@@ -332,4 +282,3 @@ void __vector_3 (void)
 	}
 
 }
-
